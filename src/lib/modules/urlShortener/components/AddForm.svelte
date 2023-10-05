@@ -33,7 +33,7 @@
 </script>
 
 <form on:submit|preventDefault={form.triggerSubmit} class="w-full">
-	<div class="flex space-x-2">
+	<div class="flex space-x-2 max-w-xl mx-auto">
 		<div
 			class=" w-full flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600"
 		>
