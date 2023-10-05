@@ -30,14 +30,14 @@
 		<AddForm />
 		<div class="space-y-3 mt-10">
 			{#each data.urlShortener as item (item.code)}
-				<p class="flex justify-center space-x-3">
+				<div class="flex justify-center space-x-3">
 					<span class="flex flex-col justify-center">
 						{item.code}
 						{'->'}
 						{item.url}
 					</span>
 
-					<span>
+					<span class="flex">
 						<Dialog.Root>
 							<Dialog.Trigger class={buttonVariants({ variant: 'ghost', size: 'icon' })}>
 								<Pencil size="18" />
@@ -74,7 +74,7 @@
 							<Trash size="18" />
 						</Button>
 					</span>
-				</p>
+				</div>
 			{/each}
 		</div>
 	</div>
