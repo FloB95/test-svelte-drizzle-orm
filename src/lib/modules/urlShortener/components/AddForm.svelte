@@ -49,7 +49,7 @@
 				placeholder="URL..."
 			/>
 		</div>
-		<Button type="submit">Sign In</Button>
+		<Button type="submit">URL kürzen</Button>
 	</div>
 	{#if $url_error && $url_dirty}<p class="mt-2 text-red-600">{$url_error}</p>{/if}
 </form>
