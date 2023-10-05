@@ -1,8 +1,8 @@
-import { t } from '$lib/trpc/t';
+import { urlShortener } from '$lib/modules/urlShortener/trpcRouter';
 import type { inferRouterInputs, inferRouterOutputs } from '@trpc/server';
-import { urlShortener } from './routes/urlShortener';
+import { createTRPCRouter } from './trpc';
 
-export const router = t.router({
+export const router = createTRPCRouter({
 	urlShortener
 });
 
