@@ -5,7 +5,7 @@
 	import { insertUrlSchema, type NewShortUrl } from '$lib/db/schema/schema';
 	import { trpc } from '$lib/trpc/client';
 	import { ZodFormStore } from '@nerd-coder/svelte-zod-form';
-	import { Icon, Link } from 'svelte-hero-icons';
+	 import { Link } from 'lucide-svelte';
 
 	const addData = async (url: string) => {
 		const newShortUrl: NewShortUrl = { url };
@@ -38,7 +38,7 @@
 			class=" w-full flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600"
 		>
 			<span class="flex select-none items-center pl-3 pr-2 text-gray-400 sm:text-sm"
-				><Icon solid size="20" src={Link} /></span
+				><Link size="20" /></span
 			>
 			<Input
 				name="url"

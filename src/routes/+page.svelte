@@ -3,7 +3,7 @@
 	import AddForm from '$lib/modules/urlShortener/components/AddForm.svelte';
 	import { trpc } from '$lib/trpc/client';
 	import type { PageData } from './$types';
-	import { Icon, Trash } from 'svelte-hero-icons';
+	import { Trash } from 'lucide-svelte';
 
 	export let data: PageData;
 
@@ -32,7 +32,7 @@
 					{'->'}
 					{item.url}
 					<button type="button" class=" ml-2 p-1 rounded-full" on:click={void deleteData(item.uid)}
-						><Icon src={Trash} size="16" /></button
+						><Trash size="18" /></button
 					>
 				</p>
 			{/each}
