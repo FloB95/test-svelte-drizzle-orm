@@ -11,16 +11,11 @@ export const urlShortener = createTRPCRouter({
 		});
 	}),
 
-	add: protectedProcedure
-		.input(insertUrlSchema)
-		.mutation(async ({ input, ctx }) => {
-      console.log(ctx);
-			return await addShortUrlAction(input);
-		}),
+	add: protectedProcedure.input(insertUrlSchema).mutation(async ({ input }) => {
+		return await addShortUrlAction(input);
+	}),
 
-	delete: publicProcedure
-		.input(deleteUrlSchema)
-		.mutation(async ({ input }) => {
-			return await db.delete(shortUrls).where(eq(shortUrls.uid, input.uid));
-		})
+	delete: publicProcedure.input(deleteUrlSchema).mutation(async ({ input }) => {
+		return await db.delete(shortUrls).where(eq(shortUrls.uid, input.uid));
+	})
 });

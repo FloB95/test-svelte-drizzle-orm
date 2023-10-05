@@ -5,20 +5,9 @@
 	import { insertUrlSchema, type NewShortUrl } from '$lib/db/schema/schema';
 	import { trpc } from '$lib/trpc/client';
 	import { ZodFormStore } from '@nerd-coder/svelte-zod-form';
-	 import { Link } from 'lucide-svelte';
+	import { Link } from 'lucide-svelte';
 
-	const addData = async (url: string) => {
-		const newShortUrl: NewShortUrl = { url };
-
-		try {
-			await trpc().urlShortener.add.mutate(newShortUrl);
-			// TODO add toast
-		} catch (error: any) {
-			// TODO add toast
-		}
-
-		await invalidateAll();
-	};
+	let loading = false;
 
 	const form = new ZodFormStore(insertUrlSchema, {
 		initialValue: {
@@ -28,6 +17,22 @@
 			await addData(v.url);
 		}
 	});
+
+	const addData = async (url: string) => {
+		const newShortUrl: NewShortUrl = { url };
+
+		loading = true;
+		try {
+			await trpc().urlShortener.add.mutate(newShortUrl);
+			// TODO add toast
+		} catch (error: any) {
+			// TODO add toast
+		}
+
+		loading = false;
+		form.reset();
+		await invalidateAll();
+	};
 
 	const { url_value, url_error, url_dirty } = form.stores;
 </script>
@@ -41,6 +46,7 @@
 				><Link size="20" /></span
 			>
 			<Input
+				disabled={loading}
 				name="url"
 				type="text"
 				on:input={form.fields.url.handleChange}
@@ -49,7 +55,7 @@
 				placeholder="URL..."
 			/>
 		</div>
-		<Button type="submit">URL kürzen</Button>
+		<Button disabled={loading} type="submit">URL kürzen</Button>
 	</div>
 	{#if $url_error && $url_dirty}<p class="mt-2 text-red-600">{$url_error}</p>{/if}
 </form>
