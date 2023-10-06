@@ -53,6 +53,7 @@
 				on:blur={form.fields.url.handleBlur}
 				value={$url_value || ''}
 				placeholder="URL..."
+				autocomplete="off"
 			/>
 		</div>
 		<Button disabled={loading} type="submit">URL kürzen</Button>

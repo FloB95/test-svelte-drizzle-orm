@@ -3,9 +3,8 @@
 	import AddForm from '$lib/modules/urlShortener/components/AddForm.svelte';
 	import { trpc } from '$lib/trpc/client';
 	import type { PageData } from './$types';
-	import { Edit, Link, Pencil, Trash } from 'lucide-svelte';
+	import { Link, Pencil, Trash } from 'lucide-svelte';
 	import * as Dialog from '$lib/components/ui/dialog';
-	import { Label } from '$lib/components/ui/label';
 	import { Button, buttonVariants } from '$lib/components/ui/button';
 	import Input from '$lib/components/ui/input/input.svelte';
 
@@ -21,7 +20,7 @@
 
 <div class="text-center mx-auto max-w-3xl mt-24">
 	<h1 class="text-4xl font-bold tracking-tight sm:text-6xl">Data to enrich your online business</h1>
-	<p class="mt-6 text-lg leading-8 text-gray-400">
+	<p class="mt-6 text-lg leading-8 dark:text-gray-400">
 		Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit
 		sunt amet fugiat veniam occaecat fugiat aliqua.
 	</p>
@@ -56,19 +55,16 @@
 										<span class="flex select-none items-center pl-3 pr-2 text-gray-400 sm:text-sm"
 											><Link size="20" /></span
 										>
-										<Input
-											name="url"
-											type="text"
-											value={item.url}
-											autofocus={true}
-										/>
+										<Input name="url" type="text" value={item.url} autofocus={true} autocomplete="off" />
 									</div>
 								</div>
 								<Dialog.Footer>
 									<Button type="submit">Änderungen Speichern</Button>
 								</Dialog.Footer>
+
 							</Dialog.Content>
 						</Dialog.Root>
+
 
 						<Button size="icon" type="button" variant="ghost" on:click={void deleteData(item.uid)}>
 							<Trash size="18" />
@@ -76,6 +72,7 @@
 					</span>
 				</div>
 			{/each}
+
 		</div>
 	</div>
 </div>
